@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bomb Defuser</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+
+			/*
+			function blue(){
+				if (Math.random() < 0.5) {
+			    	console.log("BOMB HAS BEEN DEFUSED! Nice one!")
+				} 
+				else {
+			    	console.log("BOMB HAS BEEN EXPLODED! Next time, chose the red.")
+				}
+			}
+			function red(){
+				if (Math.random() < 0.5) {
+			    	console.log("BOMB HAS BEEN DEFUSED! Nice one!")
+				} 
+				else {
+			    	console.log("BOMB HAS BEEN EXPLODED! Next time, chose the blue.")
+				}
+			}
+			*/
+			
+
+			console.log( "A thread to cut, two choices! Write: CutAThread(blue, numberOfDefuseKit you want to bet) or CutAThread(red, numberOfDefuseKit you want to bet) to decide the thread you want to cut!\n"+
+				"Don't let the bomb blow up, but don't forget... Everytime you bet a thread, you lose a defuse kit! Win a bet, win one more defuse kit and save one more city!n"+
+				"You can bet more than only one defuse kit.")
+			console.log("You begin with 5 Defuse Kit")
+
+			var bombDefuse = 0
+			var bombExplode = 0 
+
+			var defuseKit = 5
+
+			function CutAThread(choix,number) {
+				if ((choix == "blue" || choix == "red") && (number > 0 && number <= defuseKit)) {
+					console.log("You decide to cut the " +choix+ " thread.")
+					if (Math.random() < 0.5) {
+			    	console.log("BOMB HAS BEEN DEFUSED! Nice one!")
+			    		bombDefuse++;
+			    		defuseKit+=number*2;
+			    		console.log("You've won " +number*2+ " Defuse Kit. \n"+
+			    			"You got " +defuseKit+ " left.")
+					}
+					else {
+				    	console.log("BOMB HAS BEEN EXPLODED! Next time, chose the other one.")
+				    	bombExplode++;
+				    	defuseKit-=number;
+				    	console.log("You've lost "+number+" Defuse Kit. \n"+
+			    			"You got " +defuseKit+ " left.")
+				    	if (defuseKit == 0){
+				    		console.log("You don't have defuse kit remaining. The city has been erased")
+				    	}
+				    	else {
+
+				    	}
+					}
+				}
+				else {
+					console.log("What are you doing soldier?! CHOSE! FAST!")
+				}
+			}
+
+
+		</script>
+
+	</body>
+</html>
