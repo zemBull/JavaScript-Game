@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Power Fight</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+
+			/* Inventaire */
+
+			var slot = {slot1, slot2, slot3, slot4}
+
+			var slot1 = {
+				name: "Potion",
+				caracteristic: "Give back between 25 and 30 HP.",
+				heal: 25 + Math.floor(Math.random() * 6)
+			}
+			var slot2 = {
+				name: "Crystal Ball",
+				caracteristic: "Give between 13 and 15 damage.",
+				degat: 13 + Math.floor(Math.random() * 3)
+			}
+			var slot3 = {
+				name: "Empty"
+			}
+			var slot4 = {
+				name: "Empty"
+			}
+
+
+
+			/* Health Point Mob */ 
+
+			var player = 150
+
+			var titan_health = 100
+			var sneak_health = 125
+			
+
+
+			/* Different Attack */
+	
+			var bonusDarkness =  Math.floor(Math.random() * 6);
+			var powerDarkness = 10 + bonusDarkness;
+			var bonusSoul = Math.floor(Math.random() * 10);
+			var powerSoul = 15 + bonusSoul;
+
+			var hit = 0
+
+			var powerTitan = 9 + Math.floor(Math.random() * 3);
+			var powerSneak = 11 + Math.floor(Math.random() * 6);
+
+
+
+			/* Titan */
+			console.log("Boon: Wow! He looks dangerous! I shouldn't stay close to him.\n"+
+				"The Titan: ROOOOARGH! MFLLL MFLLL.\n"+
+				"Boon: Oh no. He look on my way. Let's try to put him out!\n"+
+				"\n"+
+				"Use the command AttackTitan(); to beat him.\n"+
+				"The Battle begins! FIGHT!\n"+
+				"The Titan: " +titan_health+ " HP.")
+
+			function AttackTitan(){
+
+				if (player <=0) {
+				console.log("Darkness_Tempest() ::: Soul_Eater()\n"+
+					"Inventory() ::: Past_Turn()\n"+
+					"\n"+
+					"Player: DEAD\n"+
+					"Titan: " +titan_health+ " HP")
+				}
+				else if (titan_health < 0) {
+				console.log("Darkness_Tempest() ::: Soul_Eater()\n"+
+					"Inventory() ::: Past_Turn()\n"+
+					"\n"+
+					"Player: " +player+ " HP\n"+
+					"Titan: DEAD")
+				}
+				else {
+				console.log("Darkness_Tempest() ::: Soul_Eater()\n"+
+					"Inventory() ::: Past_Turn()\n"+
+					"\n"+
+					"Player: " +player+ " HP\n"+
+					"Titan: " +titan_health+ " HP")
+				}
+			}
+
+				function Darkness_Tempest(){ 
+
+					if (player <=0) {
+						console.log("You are dead, try again.")
+					}
+					else {
+						if (titan_health >0) {
+							titan_health -= powerDarkness
+							console.log("The ennemy get hit by a Darkness Tempest and took " +powerDarkness+ " damage\n"+
+								"The ennemy got " +titan_health+ " hp left.")
+							hit++;
+							console.log("You've hit the dangerous Titan " +hit+ " times.")
+							player -= powerTitan
+							console.log("The Titan is knocking you with a mace and hit you " +powerTitan+ " damage.")
+						
+						}
+						else if ((titan_health <= 1) && (titan_health > -24)) {
+							titan_health -= powerDarkness
+							console.log("The ennemy get hit by a Darkness Tempest and took " +powerDarkness+ " damage\n"+
+									"The ennemy got " +titan_health+ " hp left.")
+								hit++;
+								console.log("You've hit the dangerous Titan " +hit+ " times.")
+
+								console.log("ARRRRGH! GLGLGLGlglglgl..\n"+
+								"You've killed him. A big swamp of blood appaered close to the dead body.")
+						}
+						else {
+							console.log("The titan is already dead.")
+						}
+					}
+				}
+
+				function Soul_Eater(){	
+
+					if (player <=0) {
+						console.log("You are dead, try again.")
+					}
+					else {
+						if (titan_health >0) {
+							titan_health -= powerSoul
+							console.log("The soul's ennemy has been drained and took " +powerSoul+ " damage\n"+
+								"The ennemy got " +titan_health+ " hp left.")
+							hit++;
+							console.log("You've hit the dangerous Titan " +hit+ " times.")
+							player -= powerTitan
+							console.log("The Titan is knocking you with a mace and hit you " +powerTitan+ " damage.")
+						
+						}
+						else if ((titan_health <= 1) && (titan_health > -24)) {
+							titan_health -= powerSoul
+							console.log("The soul's ennemy has been drained and took " +powerSoul+ " damage\n"+
+									"The ennemy got " +titan_health+ " hp left.")
+								hit++;
+								console.log("You've hit the dangerous Titan " +hit+ " times.\n"+
+									"You've killed him. A big swamp of blood appaered close to the dead body.")
+						}
+						else {
+							console.log("The titan is already dead.")
+						}
+					}
+				}
+
+				function Past_Turn(){
+	
+					if (player <=0) {
+						console.log("You are dead, try again.")
+					}
+					else {					
+						if (titan_health >=0) {
+							player -= powerTitan
+							console.log("The Titan is knocking you with a mace and hit you " +powerTitan+ " damage.")
+						}
+						else if (player <=0) {
+							console.log("You are dead, try again.")
+						}
+						else {
+							console.log("The titan is dead.")
+						}
+					}
+				}
+
+				function Inventory(item){
+					console.log("Item availible: \n"+
+						slot1.name+"\n"+
+						slot2.name+"\n"+
+						slot3.name+"\n"+
+						slot4.name+"\n"+
+						"\n"+
+						"Use the command Inventory(slotnumber) to activate it. The slot1 is on the top and the slot4 on the bottom.")
+
+					if (typeof item == "object") {
+						if (item == slot1) {
+		                	player += slot1.heal
+		                	console.log("You've used " +item.name+ " and recovered " +item.heal+ " HP.");
+		                	if (titan_health > 0){
+		                		player -= powerTitan
+		                		console.log("The Titan is knocking you with a mace and hit you " +powerTitan+ " damage.");
+		                	}
+		                	
+		                }
+						else if (item == slot2) {
+							titan_health -= slot2.degat
+			                console.log("You've used " +item.name+ " and deal " +item.degat+ " damage.");
+			                if (titan_health > 0){
+		                		player -= powerTitan
+		                		console.log("The Titan is knocking you with a mace and hit you " +powerTitan+ " damage.");
+		                	}
+		                }
+		                else {
+		                console.log("Héhé! Did you try to do something you're not allowed to?! :3");
+		            	}
+		            } 
+		            else {
+		                ("Use the command Inventory(slotnumber) to activate it. The slot1 is on the top and the slot4 on the bottom.");
+		            }
+				}
+
+
+
+			/* Sneak */
+			
+			if (titan_health <=0) {
+				console.log("Boon: Damn, he was hard to kill!\n"+
+				"The Sneak: SsshhhhhhhhhHhhhh.\n"+
+				"Boon: Really? Again?.. LMAO.\n"+
+				"\n"+
+				"Use the command AttackSneak(); to beat him.\n"+
+				"The Battle begins! FIGHT!\n"+
+				"The Sneak: " +sneak_health+ " HP.")
+
+				function AttackSneak(){
+
+					if (player <=0) {
+					console.log("Darkness_Tempest() ::: Soul_Eater()\n"+
+						"Inventory() ::: Past_Turn()\n"+
+						"\n"+
+						"Player: DEAD\n"+
+						"Sneak: " +sneak_health+ " HP")
+					}
+					else if (sneak_health < 0) {
+					console.log("Darkness_Tempest() ::: Soul_Eater()\n"+
+						"Inventory() ::: Past_Turn()\n"+
+						"\n"+
+						"Player: " +player+ " HP\n"+
+						"Sneak: DEAD")
+					}
+					else {
+					console.log("Darkness_Tempest() ::: Soul_Eater()\n"+
+						"Inventory() ::: Past_Turn()\n"+
+						"\n"+
+						"Player: " +player+ " HP\n"+
+						"Sneak: " +sneak_health+ " HP")
+					}
+				}
+
+					function Darkness_Tempest(){ 
+
+						if (player <=0) {
+							console.log("You are dead, try again.")
+						}
+						else {
+							if (sneak_health >0) {
+								sneak_health -= powerDarkness
+								console.log("The ennemy get hit by a Darkness Tempest and took " +powerDarkness+ " damage\n"+
+									"The ennemy got " +sneak_health+ " hp left.")
+								hit++;
+								console.log("You've hit the giant Sneak " +hit+ " times.")
+								player -= powerSneak
+								console.log("The Sneak is biting and hit you " +powerSneak+ " damage.")
+							
+							}
+							else if ((sneak_health <= 1) && (sneak_health > -24)) {
+								sneak_health -= powerDarkness
+								console.log("The ennemy get hit by a Darkness Tempest and took " +powerDarkness+ " damage\n"+
+										"The ennemy got " +Sneak_health+ " hp left.")
+									hit++;
+									console.log("You've hit the giant Sneak " +hit+ " times.")
+
+									console.log("ShhhhhSHshShsHShsHSHHHHHhhhhh..\n"+
+									"You've killed him. His body melts under your astounded eyes.")
+							}
+							else {
+								console.log("The titan is already dead.")
+							}
+						}
+					}
+
+					function Soul_Eater(){
+
+						if (player <=0) {
+							console.log("You are dead, try again.")
+						}
+						else {
+							if (sneak_health >0) {
+								sneak_health -= powerSoul
+								console.log("The soul's ennemy has been drained and took " +powerSoul+ " damage\n"+
+									"The ennemy got " +sneak_health+ " hp left.")
+								hit++;
+								console.log("You've hit the giant Sneak " +hit+ " times.")
+								player -= powerSneak
+								console.log("The Sneak is biting and hit you " +powerSneak+ " damage.")
+							
+							}
+							else if ((sneak_health <= 1) && (sneak_health > -24)) {
+								sneak_health -= powerSoul
+								console.log("The soul's ennemy has been drained and took " +powerSoul+ " damage\n"+
+										"The ennemy got " +sneak_health+ " hp left.")
+									hit++;
+									console.log("You've hit the giant Sneak " +hit+ " times.")
+									
+									console.log("ShhhhhSHshShsHShsHSHHHHHhhhhh..\n"+
+									"You've killed him. His body melts under your astounded eyes.")
+							}
+							else {
+								console.log("The Sneak is already dead.")
+							}
+						}
+					}
+
+					function Past_Turn(){
+
+						player -= powerSneak
+
+						if (player <=0) {
+							console.log("You are dead, try again.")
+						}
+						else {					
+							if (sneak_health >=0) {
+							console.log("The Sneak is biting and hit you " +powerSneak+ " damage.")
+							}
+							else if (player <=0) {
+								console.log("You are dead, try again.")
+							}
+							else {
+								console.log("The Sneak is dead.")
+							}
+						}
+					}
+
+					function Inventory(item){
+						console.log("Item availible: \n"+
+							slot1.name+"\n"+
+							slot2.name+"\n"+
+							slot3.name+"\n"+
+							slot4.name+"\n"+
+							"\n"+
+							"Use the command Inventory(slotnumber) to activate it. The slot1 is on the top and the slot4 on the bottom.")
+
+						if (typeof item == "object") {
+							if (item == slot1) {
+			                	player += slot1.heal
+			                	console.log("You've used " +item.name+ " and recovered " +item.heal+ " HP.");
+			                	if (sneak_health > 0) {
+			                		player -= powerSneak
+			                		console.log("The Sneak is biting and hit you " +powerSneak+ " damage.")
+			                	}
+			                }
+							else if (item == slot2) {
+								sneak_health -= slot2.degat
+				                console.log("You've used " +item.name+ " and deal " +item.degat+ " damage.");
+				                if (sneak_health > 0) {
+			                		player -= powerSneak
+			                		console.log("The Sneak is biting and hit you " +powerSneak+ " damage.")
+			                	}
+			                }
+			                else {
+			                console.log("Héhé! Did you try to do something you're not allowed to?! :3");
+			            	}
+			            } 
+			            else {
+			                ("Use the command Inventory(slotnumber) to activate it. The slot1 is on the top and the slot4 on the bottom.");
+			            }
+					}
+			}
+
+			
+
+		</script>
+
+	</body>
+</html>
