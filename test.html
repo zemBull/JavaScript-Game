@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+		var player = 100
+
+
+		/* Map */
+		var map = [
+		["~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~"],
+		["~","~","_","_","~","~","~","_","V","_","~","~","_","~","~","~","~","_","~","~"],
+		["~","~","_","_","_","~","_","_","o","_","_","_","_","~","~","~","~","_","_","~"],
+		["~","~","_","_","O","_","_","o","o","o","_","_","~","~","~","~","~","~","~","~"],
+		["~","_","_","_","o","o","o","o","_","o","o","_","_","~","~","~","~","~","~","~"],
+		["~","_","_","_","_","o","_","_","_","_","o","_","_","~","~","~","~","~","~","~"],
+		["~","_","_","_","_","o","_","_","~","_","o","_","_","~","~","_","~","~","~","~"],
+		["~","_","_","_","_","o","_","_","~","_","o","_","_","_","_","_","_","~","~","~"],
+		["~","~","_","_","_","o","_","_","_","_","o","_","_","~","_","_","_","_","~","~"],
+		["~","~","~","~","_","o","_","~","~","_","M","o","o","o","o","o","P","_","~","~"],
+		["~","~","~","~","~","o","_","~","~","_","o","_","_","_","_","_","_","_","~","~"],
+		["~","~","~","~","o","o","o","o","o","o","o","_","~","~","_","_","_","~","~","~"],
+		["~","~","~","~","V","_","_","~","~","_","o","_","~","~","~","_","~","~","~","~"],
+		["~","~","~","~","_","_","~","~","~","_","o","_","_","~","~","~","~","~","~","~"],
+		["~","~","~","_","_","_","~","~","~","_","B","_","_","~","~","~","~","~","~","~"],
+		["~","~","_","_","_","_","~","~","~","_","_","_","_","~","~","~","~","~","~","~"],
+		["~","~","~","~","_","_","~","~","~","~","_","_","~","~","~","~","~","~","~","~"],
+		["~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~"],
+		["~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~","~"],
+		]
+
+		function AfficheMap(map){
+			//vérifier map
+			if (Array.isArray(map) == false) {
+				console.error("Bug MAP?!");
+			}
+			else {
+				var Chaine = "";
+				var map_couleur = [];
+				for (var i = 0; i < map.length; i++){
+					for(var j = 0; j < map[i].length; j++){
+						if(map[i][j] == "~"){
+							Chaine += '%c ~ ';
+							map_couleur.push("color: #01A9DB; background: #0174DF");
+						}
+						else if(map[i][j] == "_"){
+							Chaine += '%c   ';
+							map_couleur.push("background: #01DF01");
+						}
+						else if(map[i][j] == "o"){
+							Chaine += '%c o ';
+							map_couleur.push("color: yellow; background: #01DF01");
+						}
+						else if(map[i][j] == "O"){
+							Chaine += '%c O ';
+							map_couleur.push("color: #00FFFF; background: #01DF01");
+						}
+						else if(map[i][j] == "V"){
+							Chaine += '%c V ';
+							map_couleur.push("color: red; background: #01DF01");
+						}
+						else if(map[i][j] == "P"){
+							Chaine += '%c P ';
+							map_couleur.push("color: red; background: #01DF01");
+						}
+						else if(map[i][j] == "M"){
+							Chaine += '%c M ';
+							map_couleur.push("color: red; background: #01DF01");
+						}
+						else if(map[i][j] == "B"){
+							Chaine += '%c B ';
+							map_couleur.push("color: #FFFFFF; background: #01DF01");
+						}
+						else{
+							console.log("Map non paramétré.")
+						}
+						
+					}
+					Chaine += '\n';
+				}
+				
+				console.log(Chaine, ...map_couleur);
+				console.log("B = Boon\n"+
+					"O = Objectif\n"+
+					"V = Ville");
+				return "Vous avez ouvert la carte.";
+			}
+		}
+
+		/* Mouvement */
+		/*
+		function Mouvement(direction) {
+			if (direction == "avancer") {
+
+			}
+			else if (direction == "reculer") {
+
+			}
+			else if (direction == "gauche") {
+
+			}
+			else if (direction == "droite") {
+
+			}
+			else if (direction == "map") {
+				console.log(+map)
+			}
+			else {
+
+			}
+		}
+		*/
+
+
+
+
+		</script>
+	</body>
+</html>
